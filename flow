@@ -1,0 +1,21 @@
+import tensorflow as tf
+from tensorflow.keras import layers
+
+# Define the U-Net model architecture
+def unet_model(input_shape):
+    inputs = tf.keras.Input(shape=input_shape)
+    conv1 = layers.Conv2D(64, 3, activation='relu', padding='same')(inputs)
+    # ... (encoder layers)
+    conv9 = layers.Conv2D(1, 1, activation='sigmoid')(up9)
+
+    model = tf.keras.Model(inputs=inputs, outputs=conv9)
+    return model
+
+# Create an instance of the U-Net model
+model = unet_model(input_shape=(256, 256, 3))
+
+# Compile the model
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+
+# Train the model
+model.fit(x_train, y_train, batch_size=16, epochs=10, validation_data=(x_val, y_val))
